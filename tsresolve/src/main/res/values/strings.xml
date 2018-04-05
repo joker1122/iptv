@@ -2,4 +2,5 @@
     <string name="app_name">TsResolve</string>
     <string name="video_file_path">video_%s_.ts</string>
     <string name="audio_file_path">audio_%s_.ts</string>
+    <string name="time">%d:%d:%d</string>
 </resources>

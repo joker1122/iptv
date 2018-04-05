@@ -1,15 +1,16 @@
 package com.tosmart.tsresolve.resolvetable;
 
 
+import android.content.Context;
 import android.util.Log;
 
 import com.tosmart.tsresolve.bean.MessageAboutProgram;
 import com.tosmart.tsresolve.bean.MessageAboutTs;
 import com.tosmart.tsresolve.resolveTs.EitGetSection;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Created by PC-001 on 2018/3/28.
@@ -25,12 +26,15 @@ public class Eit {
     private static final char[] STANDARD = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
     private static final int PID_LENGTH = 4;
     private static final int HEX = 16;
+    private static final int TIME_REDIX = 60;
     private static final int START_TIME = 3;
     private static final int DURATION = 3;
     private static final int LOOP_LENGTH = 2;
     private static final int CODE = 3;
+    private static final int CODE_FLAG = 0xFF;
     private static final int EVENT_NAME_LENGTH_FLAG = 0xFF;
     private static final int START_TIME_OFFSET = 15;
+    private static final int TIME_FLAG = 0xFF;
 
     public static void solve(MessageAboutTs messageAboutTs, List<MessageAboutProgram> messageAboutProgramList) {
         for (int i = 0; i < messageAboutProgramList.size(); i++) {
@@ -96,17 +100,69 @@ public class Eit {
     }
 
     private static void getTime(byte[] startTime, byte[] duration, MessageAboutProgram messageAboutProgram) {
-        Log.d("filter", new String(startTime));
-        Log.d("filter", new String(duration));
-
+        int startH, startM, startS, endH, endM, endS;
+        int sUp = 0;
+        int mUp = 0;
+        startH = byteToInt(startTime[0]);
+        startM = byteToInt(startTime[1]);
+        startS = byteToInt(startTime[2]);
+        endS = startS + byteToInt(duration[2]);
+        sUp = endS / TIME_REDIX;
+        endS = endS % TIME_REDIX;
+        endM = startM + byteToInt(duration[1]) + sUp;
+        mUp = endM / TIME_REDIX;
+        endM = endM % TIME_REDIX;
+        endH = startH + mUp + byteToInt(duration[0]);
+        String start = String.format("%d:%d:%d", startH, startM, startS);
+        String end = String.format("%d:%d:%d", endH, endM, endS);
+        messageAboutProgram.setEndTime(end);
+        messageAboutProgram.setStartTime(start);
     }
 
     private static String getCharacter(byte[] bytes) {
-        return null;
+        String character;
+        switch (bytes[0]) {
+//            case 0x01:
+//                break;
+//            case 0x01:
+//                break;
+//            case 0x01:
+//                break;
+//            case 0x01:
+//                break;
+//            case 0x01:
+//                break;
+//            case 0x01:
+//                break;
+//            case 0x01:
+//                break;
+//            case 0x01:
+//                break;
+//            case 0x01:
+//                break;
+//            case 0x01:
+//                break;
+//            case 0x01:
+//                break;
+//            case 0x01:
+//                break;
+//            case 0x01:
+//                break;
+//            case 0x01:
+//                break;
+//            case 0x01:
+//                break;
+            default:
+                character = null;
+                break;
+        }
+        return character;
     }
 
-    private static String byteToInt(byte[] bytes) {
-
-        return null;
+    private static int byteToInt(byte b) {
+        int time = b & TIME_FLAG;
+        int h = time / HEX;
+        int l = time % HEX;
+        return h * 10 + l;
     }
 }
