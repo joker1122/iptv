@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="shape_radiu">70dp</dimen>
+    <!--select activity-->
+    <dimen name="head_bar_height">45dp</dimen>
+    <color name="head_bar_background">#d42020</color>
+    <dimen name="head_text_size">18dp</dimen>
+    <color name="head_text_color">#ffffff</color>
+    <dimen name="dir_pic_width">24dp</dimen>
+    <dimen name="dir_pic_height">20dp</dimen>
+    <dimen name="item_height">56dp</dimen>
+    <dimen name="dir_pic_to_left">24dp</dimen>
+    <dimen name="dir_pic_to_right">11dp</dimen>
+    <dimen name="dir_pic_to_top_buttom">18dp</dimen>
+    <dimen name="name_text_size">14dp</dimen>
+    <color name="name_text_color">#1c1a1a</color>
+    <dimen name="arrow_pic_height">17dp</dimen>
+    <dimen name="arrow_pic_width">9dp</dimen>
+    <dimen name="arrow_pic_to_right">24dp</dimen>
+    <dimen name="loading_pic_width">48dp</dimen>
+    <dimen name="loading_pic_height">48dp</dimen>
+    <dimen name="loading_pic_to_top">18dp</dimen>
+    <dimen name="loading_pic_to_beneath">16dp</dimen>
+    <dimen name="text_size">18dp</dimen>
+    <color name="text_color">#ffffff</color>
+    <dimen name="loading_out_height">118dp</dimen>
+    <dimen name="loading_out_width">186dp</dimen>
+    <dimen name="loading_out_buttom">333dp</dimen>
+    <dimen name="loading_out_left_right">86dp</dimen>
+    <color name="loading_out_background">#404040</color>
+
+    <!--mainmenu-->
+    <dimen name="search_edit_height">32dp</dimen>
+    <dimen name="search_edit_width">270dp</dimen>
+    <dimen name="search_to_left">15dp</dimen>
+    <dimen name="search_to_fav">16dp</dimen>
+    <dimen name="search_icon_height">32dp</dimen>
+    <dimen name="search_icon_width">32dp</dimen>
+    <dimen name="fav_icon_width">23dp</dimen>
+    <dimen name="fav_icon_height">20dp</dimen>
+    <dimen name="fav_to_right">26dp</dimen>
+    <dimen name="search_text_size">14dp</dimen>
+    <color name="search_text_color">#991c1a1a</color>
+    <dimen name="item_name_text_size">14dp</dimen>
+    <color name="item_name_text_color">#1c1a1a</color>
+    <dimen name="item_message_text_size">14dp</dimen>
+    <color name="item_message_text_color">#8c8a8a</color>
+    <dimen name="buttom_menu_heigth">56dp</dimen>
+    <dimen name="tv_icon_heigth">22dp</dimen>
+    <dimen name="tv_icon_width">26dp</dimen>
+    <dimen name="tv_text_size">12dp</dimen>
+    <color name="tv_text_color">#fefefe</color>
+    <dimen name="about_icon_heigth">24dp</dimen>
+    <dimen name="about_icon_width">24dp</dimen>
+    <dimen name="about_text_size">12dp</dimen>
+    <color name="about_text_color">#4dffffff</color>
+    <color name="search_color">#ffffff</color>
+    <color name="buttom_back_ground">#1c1a1a</color>
+    <dimen name="distance">6dp</dimen>
+
+
+    <!--about-->
+    <dimen name="logo_height">213dp</dimen>
+    <dimen name="logo_width">213dp</dimen>
+    <dimen name="logo_to_right">73dp</dimen>
+    <dimen name="logo_to_top">16dp</dimen>
+    <dimen name="logo_to_beneath">16dp</dimen>
+    <dimen name="to_left">20dp</dimen>
+    <dimen name="about_app_text_size">16dp</dimen>
+    <color name="about_app_text_color">#403d3d</color>
+    <dimen name="check_update_text_size">16dp</dimen>
+    <color name="check_update_text_color">#403d3d</color>
+    <dimen name="version_text_size">16dp</dimen>
+    <color name="version_text_color">#000000</color>
+    <dimen name="arrow_to_right">24dp</dimen>
+    <dimen name="arrow_height">16dp</dimen>
+    <dimen name="arrow_width">10dp</dimen>
+    <dimen name="tv_height">56dp</dimen>
+    <dimen name="f_tv_size">22dp</dimen>
+    <dimen name="version_text_width">50dp</dimen>
+</resources>

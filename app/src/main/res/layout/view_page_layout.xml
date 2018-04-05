@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_page"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1">
+
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:background="@color/buttom_back_ground">
+
+        <LinearLayout
+            android:id="@+id/tv_linear_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_tv"
+                android:layout_width="@dimen/tv_icon_width"
+                android:layout_height="@dimen/tv_icon_heigth"
+                android:layout_marginTop="@dimen/distance"
+                android:src="@drawable/bottom_icon_live_light" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/live"
+                android:textColor="@color/tv_text_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/about_linear_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_about"
+                android:layout_width="@dimen/tv_icon_width"
+                android:layout_height="@dimen/tv_icon_heigth"
+                android:layout_marginTop="@dimen/distance"
+                android:src="@drawable/bottom_icon_about_normal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/about"
+                android:textColor="@color/about_app_text_color" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

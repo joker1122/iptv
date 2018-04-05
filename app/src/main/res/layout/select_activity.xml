@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.excellence.iptv.MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/head_bar_height"
+        android:background="@color/head_bar_background"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/select_head"
+        android:textColor="@color/head_text_color"
+        android:textSize="@dimen/head_text_size" />
+
+    <ListView
+        android:id="@+id/lv_file_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
