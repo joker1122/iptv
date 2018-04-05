@@ -8,6 +8,7 @@ import com.tosmart.tsresolve.bean.MessageAboutProgram;
 import com.tosmart.tsresolve.bean.MessageAboutTs;
 import com.tosmart.tsresolve.resolveTs.EitGetSection;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,6 +74,13 @@ public class Eit {
                     byte[] name = new byte[nameLength];
                     System.arraycopy(arrayList.get(0), i + 2, code, 0, CODE);
                     System.arraycopy(arrayList.get(0), i + 6, name, 0, nameLength);
+                    String character = getCharacter(code);
+                    try {
+                        String programName = new String(name, character);
+                        messageAboutProgram.setProgramName(programName);
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 } else {
                     i = i + descriptorLength + 2;
@@ -91,12 +99,20 @@ public class Eit {
                     byte[] nextName = new byte[nameLength];
                     System.arraycopy(arrayList.get(1), i + 2, code, 0, CODE);
                     System.arraycopy(arrayList.get(1), i + 6, nextName, 0, nameLength);
+                    String character = getCharacter(code);
+                    try {
+                        String programName = new String(nextName, character);
+                        messageAboutProgram.setNextProgramName(programName);
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 } else {
                     i = i + descriptorLength + 2;
                 }
             }
         }
+        Log.d("filter", "hhh");
     }
 
     private static void getTime(byte[] startTime, byte[] duration, MessageAboutProgram messageAboutProgram) {
@@ -122,36 +138,102 @@ public class Eit {
     private static String getCharacter(byte[] bytes) {
         String character;
         switch (bytes[0]) {
-//            case 0x01:
-//                break;
-//            case 0x01:
-//                break;
-//            case 0x01:
-//                break;
-//            case 0x01:
-//                break;
-//            case 0x01:
-//                break;
-//            case 0x01:
-//                break;
-//            case 0x01:
-//                break;
-//            case 0x01:
-//                break;
-//            case 0x01:
-//                break;
-//            case 0x01:
-//                break;
-//            case 0x01:
-//                break;
-//            case 0x01:
-//                break;
-//            case 0x01:
-//                break;
-//            case 0x01:
-//                break;
-//            case 0x01:
-//                break;
+            case 0x01:
+                character = "ISO-8859-5";
+                break;
+            case 0x02:
+                character = "ISO-8859-6";
+                break;
+            case 0x03:
+                character = "ISO-8859-7";
+                break;
+            case 0x04:
+                character = "ISO-8859-8";
+                break;
+            case 0x05:
+                character = "ISO-8859-9";
+                break;
+            case 0x06:
+                character = "ISO-8859-10";
+                break;
+            case 0x07:
+                character = "ISO-8859-11";
+                break;
+            case 0x08:
+                character = "ISO-8859-12";
+                break;
+            case 0x09:
+                character = "ISO-8859-13";
+                break;
+            case 0x0A:
+                character = "ISO-8859-14";
+                break;
+            case 0x0B:
+                character = "ISO-8859-15";
+                break;
+            case 0x10:
+                switch (bytes[2]) {
+                    case 0x01:
+                        character = "ISO-8859-1";
+                        break;
+                    case 0x02:
+                        character = "ISO-8859-2";
+                        break;
+                    case 0x03:
+                        character = "ISO-8859-3";
+                        break;
+                    case 0x04:
+                        character = "ISO-8859-4";
+                        break;
+                    case 0x05:
+                        character = "ISO-8859-5";
+                        break;
+                    case 0x06:
+                        character = "ISO-8859-6";
+                        break;
+                    case 0x07:
+                        character = "ISO-8859-7";
+                        break;
+                    case 0x08:
+                        character = "ISO-8859-8";
+                        break;
+                    case 0x09:
+                        character = "ISO-8859-9";
+                        break;
+                    case 0x0A:
+                        character = "ISO-8859-10";
+                        break;
+                    case 0x0B:
+                        character = "ISO-8859-11";
+                        break;
+                    case 0x0C:
+                        character = "ISO-8859-12";
+                        break;
+                    case 0x0D:
+                        character = "ISO-8859-13";
+                        break;
+                    case 0x0E:
+                        character = "ISO-8859-14";
+                        break;
+                    case 0x0F:
+                        character = "ISO-8859-15";
+                        break;
+                    default:
+                        character = null;
+                        break;
+                }
+                break;
+            case 0x11:
+            case 0x14:
+            case 0x15:
+                character = "ISO-10646";
+                break;
+            case 0x12:
+                character = "KSX1001-2004";
+                break;
+            case 0x13:
+                character = "GB-2312-1980";
+                break;
             default:
                 character = null;
                 break;

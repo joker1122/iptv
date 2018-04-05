@@ -31,7 +31,11 @@ public class MessageAboutProgram {
     }
 
     public void setNextProgramName(String nextProgramName) {
-        mNextProgramName = nextProgramName;
+        if (nextProgramName.length() == 0) {
+            nextProgramName = "NO EPG";
+        } else {
+            mNextProgramName = nextProgramName;
+        }
     }
 
     public String getProgramName() {
