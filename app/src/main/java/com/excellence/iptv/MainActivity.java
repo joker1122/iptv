@@ -11,11 +11,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.ArrayMap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<MessageAboutProgram> mMessageAboutPrograms;
     private ArrayList<String> mProgramMapPid;
     private Map<String, String> mMapArrayList;
+    private ImageView mImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,13 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mWindowManager = getWindowManager();
                 mLoadingView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.loading_layout, null);
+                mImageView = (ImageView) mLoadingView.findViewById(R.id.iv_load_image);
+                Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.load);
+                LinearInterpolator interpolator = new LinearInterpolator();
+                animation.setInterpolator(interpolator);
+                if (animation != null) {
+                    mImageView.startAnimation(animation);
+                }
                 mLayoutParams = new WindowManager.LayoutParams();
                 mLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
                 mLayoutParams.width = getResources().getDimensionPixelSize(R.dimen.loading_out_width);
@@ -146,7 +157,11 @@ public class MainActivity extends AppCompatActivity {
             switch (msg.what) {
                 case FINISH:
                     Intent intent = new Intent(MainActivity.this, ViewPageActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelableArrayList("message", mMessageAboutPrograms);
+                    intent.putExtra("bundle", bundle);
                     startActivity(intent);
+                    mImageView.clearAnimation();
                     mWindowManager.removeViewImmediate(mLoadingView);
                     mLoadingView = null;
                     break;

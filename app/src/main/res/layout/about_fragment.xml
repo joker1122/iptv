@@ -6,14 +6,19 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/head_bar_height"
-        android:background="@color/head_bar_background"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="@string/about"
-        android:textColor="@color/head_text_color"
-        android:textSize="@dimen/head_text_size" />
+        android:layout_height="@dimen/head_bar_height">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/head_bar_height"
+            android:background="@color/head_bar_background"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/about"
+            android:textColor="@color/head_text_color"
+            android:textSize="@dimen/head_text_size" />
+    </LinearLayout>
 
     <ImageView
         android:layout_width="@dimen/logo_width"

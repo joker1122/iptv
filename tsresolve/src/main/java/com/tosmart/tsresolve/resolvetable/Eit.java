@@ -1,7 +1,6 @@
 package com.tosmart.tsresolve.resolvetable;
 
 
-import android.content.Context;
 import android.util.Log;
 
 import com.tosmart.tsresolve.bean.MessageAboutProgram;
@@ -36,6 +35,8 @@ public class Eit {
     private static final int EVENT_NAME_LENGTH_FLAG = 0xFF;
     private static final int START_TIME_OFFSET = 15;
     private static final int TIME_FLAG = 0xFF;
+    private static final int THREE_BYTE_FLAG = 0x10;
+    private static final int BYTE_NOT_DESCRIPTOR = 15;
 
     public static void solve(MessageAboutTs messageAboutTs, List<MessageAboutProgram> messageAboutProgramList) {
         for (int i = 0; i < messageAboutProgramList.size(); i++) {
@@ -57,7 +58,7 @@ public class Eit {
     }
 
     private static void getMessage(ArrayList<byte[]> arrayList, MessageAboutProgram messageAboutProgram) {
-        if (arrayList.size() != 0) {
+        if (arrayList.size() != 0 && arrayList.get(0).length - BYTE_NOT_DESCRIPTOR > 0) {
             byte[] startTimeBuffer = new byte[START_TIME];
             byte[] durationBuffer = new byte[DURATION];
             byte[] loopLengthBuffer = new byte[LOOP_LENGTH];
@@ -71,12 +72,19 @@ public class Eit {
                 int descriptorLength = arrayList.get(0)[i + 1] & DESCRIPTOE_LENGTH_FLAG;
                 if ((arrayList.get(0)[i] & DESCRIPTOR_FLAG) == DESCRIPTOR_TAG) {
                     int nameLength = arrayList.get(0)[i + 5] & EVENT_NAME_LENGTH_FLAG;
-                    byte[] name = new byte[nameLength];
-                    System.arraycopy(arrayList.get(0), i + 2, code, 0, CODE);
-                    System.arraycopy(arrayList.get(0), i + 6, name, 0, nameLength);
+                    byte[] name;
+                    System.arraycopy(arrayList.get(0), i + 6, code, 0, CODE);
+                    if ((code[0] & CODE_FLAG) == THREE_BYTE_FLAG) {
+                        name = new byte[nameLength - 3];
+                        System.arraycopy(arrayList.get(0), i + 9, name, 0, nameLength - 3);
+                    } else {
+                        name = new byte[nameLength - 1];
+                        System.arraycopy(arrayList.get(0), i + 7, name, 0, nameLength - 1);
+                    }
                     String character = getCharacter(code);
                     try {
                         String programName = new String(name, character);
+                        Log.d("filter", programName);
                         messageAboutProgram.setProgramName(programName);
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
@@ -87,7 +95,7 @@ public class Eit {
                 }
             }
         }
-        if (arrayList.size() == 2) {
+        if (arrayList.size() == 2 && arrayList.get(1).length - BYTE_NOT_DESCRIPTOR > 0) {
             byte[] loopLengthBuffer = new byte[LOOP_LENGTH];
             byte[] code = new byte[CODE];
             System.arraycopy(arrayList.get(1), START_TIME_OFFSET + START_TIME + DURATION, loopLengthBuffer, 0, LOOP_LENGTH);
@@ -96,9 +104,15 @@ public class Eit {
                 int descriptorLength = arrayList.get(1)[i + 1] & DESCRIPTOE_LENGTH_FLAG;
                 if ((arrayList.get(0)[i] & DESCRIPTOR_FLAG) == DESCRIPTOR_TAG) {
                     int nameLength = arrayList.get(1)[i + 5] & EVENT_NAME_LENGTH_FLAG;
-                    byte[] nextName = new byte[nameLength];
-                    System.arraycopy(arrayList.get(1), i + 2, code, 0, CODE);
-                    System.arraycopy(arrayList.get(1), i + 6, nextName, 0, nameLength);
+                    System.arraycopy(arrayList.get(1), i + 6, code, 0, CODE);
+                    byte[] nextName;
+                    if ((code[0] & CODE_FLAG) == THREE_BYTE_FLAG) {
+                        nextName = new byte[nameLength - 3];
+                        System.arraycopy(arrayList.get(1), i + 9, nextName, 0, nameLength - 3);
+                    } else {
+                        nextName = new byte[nameLength - 1];
+                        System.arraycopy(arrayList.get(1), i + 7, nextName, 0, nameLength - 1);
+                    }
                     String character = getCharacter(code);
                     try {
                         String programName = new String(nextName, character);
@@ -112,7 +126,6 @@ public class Eit {
                 }
             }
         }
-        Log.d("filter", "hhh");
     }
 
     private static void getTime(byte[] startTime, byte[] duration, MessageAboutProgram messageAboutProgram) {

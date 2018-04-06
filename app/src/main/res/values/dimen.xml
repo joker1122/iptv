@@ -58,6 +58,8 @@
     <color name="search_color">#ffffff</color>
     <color name="buttom_back_ground">#1c1a1a</color>
     <dimen name="distance">6dp</dimen>
+    <dimen name="number_width">43dp</dimen>
+    <dimen name="time_width">100dp</dimen>
 
 
     <!--about-->
