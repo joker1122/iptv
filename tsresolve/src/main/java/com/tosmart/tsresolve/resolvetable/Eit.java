@@ -95,37 +95,37 @@ public class Eit {
                 }
             }
         }
-        if (arrayList.size() == 2 && arrayList.get(1).length - BYTE_NOT_DESCRIPTOR > 0) {
-            byte[] loopLengthBuffer = new byte[LOOP_LENGTH];
-            byte[] code = new byte[CODE];
-            System.arraycopy(arrayList.get(1), START_TIME_OFFSET + START_TIME + DURATION, loopLengthBuffer, 0, LOOP_LENGTH);
-            int loopLength = ((loopLengthBuffer[1] & LOOP_LENGTH_HIGH) << 8) + loopLengthBuffer[1] & LOOP_LENGTH_LOW;
-            for (int i = START_TIME_OFFSET + 8; i < START_TIME_OFFSET + 8 + loopLength; i++) {
-                int descriptorLength = arrayList.get(1)[i + 1] & DESCRIPTOE_LENGTH_FLAG;
-                if ((arrayList.get(0)[i] & DESCRIPTOR_FLAG) == DESCRIPTOR_TAG) {
-                    int nameLength = arrayList.get(1)[i + 5] & EVENT_NAME_LENGTH_FLAG;
-                    System.arraycopy(arrayList.get(1), i + 6, code, 0, CODE);
-                    byte[] nextName;
-                    if ((code[0] & CODE_FLAG) == THREE_BYTE_FLAG) {
-                        nextName = new byte[nameLength - 3];
-                        System.arraycopy(arrayList.get(1), i + 9, nextName, 0, nameLength - 3);
-                    } else {
-                        nextName = new byte[nameLength - 1];
-                        System.arraycopy(arrayList.get(1), i + 7, nextName, 0, nameLength - 1);
-                    }
-                    String character = getCharacter(code);
-                    try {
-                        String programName = new String(nextName, character);
-                        messageAboutProgram.setNextProgramName(programName);
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                } else {
-                    i = i + descriptorLength + 2;
-                }
-            }
-        }
+//        if (arrayList.size() == 2 && arrayList.get(1).length - BYTE_NOT_DESCRIPTOR > 0) {
+//            byte[] loopLengthBuffer = new byte[LOOP_LENGTH];
+//            byte[] code = new byte[CODE];
+//            System.arraycopy(arrayList.get(1), START_TIME_OFFSET + START_TIME + DURATION, loopLengthBuffer, 0, LOOP_LENGTH);
+//            int loopLength = ((loopLengthBuffer[1] & LOOP_LENGTH_HIGH) << 8) + loopLengthBuffer[1] & LOOP_LENGTH_LOW;
+//            for (int i = START_TIME_OFFSET + 8; i < START_TIME_OFFSET + 8 + loopLength; i++) {
+//                int descriptorLength = arrayList.get(1)[i + 1] & DESCRIPTOE_LENGTH_FLAG;
+//                if ((arrayList.get(0)[i] & DESCRIPTOR_FLAG) == DESCRIPTOR_TAG) {
+//                    int nameLength = arrayList.get(1)[i + 5] & EVENT_NAME_LENGTH_FLAG;
+//                    System.arraycopy(arrayList.get(1), i + 6, code, 0, CODE);
+//                    byte[] nextName;
+//                    if ((code[0] & CODE_FLAG) == THREE_BYTE_FLAG) {
+//                        nextName = new byte[nameLength - 3];
+//                        System.arraycopy(arrayList.get(1), i + 9, nextName, 0, nameLength - 3);
+//                    } else {
+//                        nextName = new byte[nameLength - 1];
+//                        System.arraycopy(arrayList.get(1), i + 7, nextName, 0, nameLength - 1);
+//                    }
+//                    String character = getCharacter(code);
+//                    try {
+//                        String programName = new String(nextName, character);
+//                        messageAboutProgram.setNextProgramName(programName);
+//                    } catch (UnsupportedEncodingException e) {
+//                        e.printStackTrace();
+//                    }
+//                    break;
+//                } else {
+//                    i = i + descriptorLength + 2;
+//                }
+//            }
+//        }
     }
 
     private static void getTime(byte[] startTime, byte[] duration, MessageAboutProgram messageAboutProgram) {

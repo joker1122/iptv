@@ -11,6 +11,7 @@
         android:layout_height="@dimen/head_bar_height">
 
         <TextView
+            android:id="@+id/tv_about"
             android:layout_width="match_parent"
             android:layout_height="@dimen/head_bar_height"
             android:background="@color/head_bar_background"
@@ -27,6 +28,7 @@
         android:src="@drawable/ic_logo" />
 
     <TextView
+        android:id="@+id/tv_ftv"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tv_height"
         android:gravity="center_horizontal|center_vertical"
@@ -48,6 +50,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_about_app"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/to_left"
@@ -59,6 +62,7 @@
                 android:textSize="@dimen/about_app_text_size" />
 
             <TextView
+                android:id="@+id/tv_version_message"
                 android:layout_width="@dimen/version_text_width"
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/arrow_to_right"
@@ -75,6 +79,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_check_update"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/tv_height"
                 android:layout_marginLeft="@dimen/to_left"

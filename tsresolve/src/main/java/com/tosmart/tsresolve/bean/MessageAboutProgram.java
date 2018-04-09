@@ -13,13 +13,13 @@ public class MessageAboutProgram implements Parcelable {
     private ArrayList<String> mVideoPid = new ArrayList<>();
     private ArrayList<String> mAudioPid = new ArrayList<>();
     private ArrayList<String> mPrivate = new ArrayList<>();
-    private String mProviderName;
-    private String mName;
-    private String mProgramName;
-    private String mStartTime;
-    private String mEndTime;
-    private String mNextProgramName;
-    private String mServiceId;
+    private String mProviderName = null;
+    private String mName = null;
+    private String mProgramName = null;
+    private String mStartTime = null;
+    private String mEndTime = null;
+    private String mNextProgramName = null;
+    private String mServiceId = null;
 
     public MessageAboutProgram() {
 
@@ -38,14 +38,14 @@ public class MessageAboutProgram implements Parcelable {
     }
 
     public void setNextProgramName(String nextProgramName) {
-        if (nextProgramName.length() == 0) {
-            nextProgramName = "NO EPG";
-        } else {
-            mNextProgramName = nextProgramName;
-        }
+        mNextProgramName = nextProgramName;
+
     }
 
     public String getProgramName() {
+        if (mProgramName == null) {
+            return new String("NO EPG");
+        }
         return mProgramName;
     }
 

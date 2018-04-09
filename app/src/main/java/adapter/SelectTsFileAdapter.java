@@ -1,6 +1,7 @@
 package adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,11 @@ import java.util.List;
 public class SelectTsFileAdapter extends BaseAdapter {
     private List<String> mNameList;
     private LayoutInflater mInflater;
+    private Context mContext;
 
     public SelectTsFileAdapter(Context context, List<String> list) {
         super();
+        mContext = context;
         mNameList = list;
         mInflater = LayoutInflater.from(context);
     }
@@ -51,6 +54,8 @@ public class SelectTsFileAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+        Typeface mediumTypeface = Typeface.createFromAsset(mContext.getAssets(), "Font/Roboto-Medium.ttf");
+        viewHolder.mTextView.setTypeface(mediumTypeface);
         viewHolder.mTextView.setText(mNameList.get(position));
         return convertView;
     }

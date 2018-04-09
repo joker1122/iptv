@@ -8,6 +8,7 @@
     tools:context="com.excellence.iptv.MainActivity">
 
     <TextView
+        android:id="@+id/tv_select_head"
         android:layout_width="match_parent"
         android:layout_height="@dimen/head_bar_height"
         android:background="@color/head_bar_background"

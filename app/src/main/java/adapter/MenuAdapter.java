@@ -1,6 +1,7 @@
 package adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +20,11 @@ import java.util.List;
 public class MenuAdapter extends BaseAdapter {
     private List<MessageAboutProgram> mMessageAboutProgramList;
     private LayoutInflater mInflater;
+    private Context mContext;
 
     public MenuAdapter(Context context, List<MessageAboutProgram> messageAboutProgramList) {
         super();
+        mContext = context;
         mMessageAboutProgramList = messageAboutProgramList;
         mInflater = LayoutInflater.from(context);
     }
@@ -46,7 +49,7 @@ public class MenuAdapter extends BaseAdapter {
         MyHolder myHolder;
         if (convertView == null) {
             myHolder = new MyHolder();
-            convertView = mInflater.inflate(R.layout.main_menu_item, null);
+            convertView = mInflater.inflate(R.layout.main_menu_item_layout, null);
             myHolder.numberView = convertView.findViewById(R.id.tv_number);
             myHolder.nextNameView = convertView.findViewById(R.id.tv_next_program_name);
             myHolder.nameView = convertView.findViewById(R.id.tv_program_name);
@@ -55,10 +58,16 @@ public class MenuAdapter extends BaseAdapter {
         } else {
             myHolder = (MyHolder) convertView.getTag();
         }
+        Typeface mediumTypeface = Typeface.createFromAsset(mContext.getAssets(), "Font/Roboto-Medium.ttf");
+        Typeface regularTypeface = Typeface.createFromAsset(mContext.getAssets(), "Font/Roboto-Regular.ttf");
+        myHolder.numberView.setTypeface(mediumTypeface);
+        myHolder.nameView.setTypeface(mediumTypeface);
+        myHolder.timeView.setTypeface(regularTypeface);
+        myHolder.nextNameView.setTypeface(regularTypeface);
         myHolder.timeView.setText(String.format("%s-%s", mMessageAboutProgramList.get(position).getStartTime(), mMessageAboutProgramList.get(position).getEndTime()));
-        myHolder.nameView.setText(mMessageAboutProgramList.get(position).getProgramName());
-        myHolder.nextNameView.setText(mMessageAboutProgramList.get(position).getNextProgramName());
-        myHolder.numberView.setText(getNumber(position + 1));
+        myHolder.nameView.setText(mMessageAboutProgramList.get(position).getName());
+        myHolder.nextNameView.setText(mMessageAboutProgramList.get(position).getProgramName());
+        myHolder.numberView.setText(mMessageAboutProgramList.get(position).getServiceId());
         return convertView;
     }
 

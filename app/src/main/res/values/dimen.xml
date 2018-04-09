@@ -33,7 +33,7 @@
     <!--mainmenu-->
     <dimen name="search_edit_height">32dp</dimen>
     <dimen name="search_edit_width">270dp</dimen>
-    <dimen name="search_to_left">15dp</dimen>
+    <dimen name="search_to_left">10dp</dimen>
     <dimen name="search_to_fav">16dp</dimen>
     <dimen name="search_icon_height">32dp</dimen>
     <dimen name="search_icon_width">32dp</dimen>
@@ -59,7 +59,7 @@
     <color name="buttom_back_ground">#1c1a1a</color>
     <dimen name="distance">6dp</dimen>
     <dimen name="number_width">43dp</dimen>
-    <dimen name="time_width">100dp</dimen>
+    <dimen name="time_width">110dp</dimen>
 
 
     <!--about-->
@@ -81,4 +81,21 @@
     <dimen name="tv_height">56dp</dimen>
     <dimen name="f_tv_size">22dp</dimen>
     <dimen name="version_text_width">50dp</dimen>
+
+    <!--search-->
+    <dimen name="search_width">230dp</dimen>
+    <dimen name="search_edit_to_left">8dp</dimen>
+    <dimen name="cancel_button_to_left">9dp</dimen>
+    <dimen name="cancel_button_height">28dp</dimen>
+    <dimen name="cancel_button_width">69dp</dimen>
+    <color name="cancel_color">#ffffff</color>
+    <dimen name="search_history_height">53dp</dimen>
+    <dimen name="search_history_width">106dp</dimen>
+    <dimen name="search_history_to_left">16dp</dimen>
+    <dimen name="search_history_text_size">16dp</dimen>
+    <dimen name="icon_delete_width">46dp</dimen>
+    <dimen name="history_height">36dp</dimen>
+    <color name="history_bg_color">#e6e6e6</color>
+    <color name="history_text_color">#403d3d</color>
+    <dimen name="history_text_size">14dp</dimen>
 </resources>

@@ -5,7 +5,7 @@ package com.tosmart.tsresolve.bean;
  */
 
 public class MessageAboutTs {
-    private String mPath;
+    private String mPath = null;
     private int mPacketLength;
     private int mStartIndex;
 
